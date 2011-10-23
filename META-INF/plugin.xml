@@ -1,6 +1,6 @@
-<idea-plugin version="2">
-  <name>Notation Converter</name>
-  <description><![CDATA[
+<idea-plugin version="2" url="https://github.com/mjedynak/Notation-Converter--Intellij-Idea-Plugin-">
+    <name>Notation Converter</name>
+    <description><![CDATA[
       Plugin adds ability to convert the selected name between camel case (used in field's names) and uppercase underscore (used in constant's names).
       Works similar to 'Toggle case' action.
       <br/>
@@ -12,26 +12,35 @@
           <li>Edit -> Camel Case / Underscore Conversion (from Edit menu).</li>
       </ul>
       ]]>
-  </description>
-  <version>1.1.0</version>
-  <vendor email="m.jedynak [at] gmail.com">Michal Jedynak
-  </vendor>
-  <idea-version since-build="8000"/>
+    </description>
+    <version>1.1.0</version>
+    <change-notes>
+        <![CDATA[version 1.1.0<br/>
+        <ul>
+        <li>Added ability to convert name in any kind of file (not only source files)</li>
+        <li>Added ability to convert name in refactoring modal window (after hitting SHIFT+F6)</li>
+        <li>Changed default shortcut to (ALT + SHIFT + U) - similar to 'Toggle Case' action (CTRL + SHIFT + U)</li>
+        <li>Moved action to 'Edit menu' and changed its name to 'Camel Case / Underscore Conversion'</li>
+        </ul>
+      ]]></change-notes>
+    <vendor email="m.jedynak [at] gmail.com">Michal Jedynak
+    </vendor>
+    <idea-version since-build="8000"/>
 
-  <application-components>
-  </application-components>
+    <application-components>
+    </application-components>
 
-  <project-components>
-  </project-components>
+    <project-components>
+    </project-components>
 
-  <actions>
-      <action id="CamelCaseUnderscoreConversion" class="pl.mjedynak.idea.plugins.notation.action.ChangeNotationAction"
-              text="Camel Case / Underscore Conversion" description="changes notation of the selected name">
-          <add-to-group group-id="EditSmartGroup" anchor="last"/>
-          <keyboard-shortcut keymap="$default" first-keystroke="alt shift U"/>
-      </action>
-  </actions>
+    <actions>
+        <action id="CamelCaseUnderscoreConversion" class="pl.mjedynak.idea.plugins.notation.action.ChangeNotationAction"
+                text="Camel Case / Underscore Conversion" description="changes notation of the selected name">
+            <add-to-group group-id="EditSmartGroup" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="alt shift U"/>
+        </action>
+    </actions>
 
-  <extensions defaultExtensionNs="com.intellij">
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
 </idea-plugin>
