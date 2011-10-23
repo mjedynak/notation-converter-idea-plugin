@@ -1,0 +1,37 @@
+<idea-plugin version="2">
+  <name>Notation Converter</name>
+  <description><![CDATA[
+      Plugin adds ability to convert the selected name between camel case (used in field's names) and uppercase underscore (used in constant's names).
+      Works similar to 'Toggle case' action.
+      <br/>
+      E.g. 'MY_NAME' -> 'myName'.
+      <br/>
+      Usage:
+      <ul>
+          <li>ALT+SHIFT+U on a name (shortcut).</li>
+          <li>Edit -> Camel Case / Underscore Conversion (from Edit menu).</li>
+      </ul>
+      ]]>
+  </description>
+  <version>1.1.0</version>
+  <vendor email="m.jedynak [at] gmail.com">Michal Jedynak
+  </vendor>
+  <idea-version since-build="8000"/>
+
+  <application-components>
+  </application-components>
+
+  <project-components>
+  </project-components>
+
+  <actions>
+      <action id="CamelCaseUnderscoreConversion" class="pl.mjedynak.idea.plugins.notation.action.ChangeNotationAction"
+              text="Camel Case / Underscore Conversion" description="changes notation of the selected name">
+          <add-to-group group-id="EditSmartGroup" anchor="last"/>
+          <keyboard-shortcut keymap="$default" first-keystroke="alt shift U"/>
+      </action>
+  </actions>
+
+  <extensions defaultExtensionNs="com.intellij">
+  </extensions>
+</idea-plugin>
