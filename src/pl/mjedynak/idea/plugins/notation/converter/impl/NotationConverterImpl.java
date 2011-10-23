@@ -12,17 +12,19 @@ public class NotationConverterImpl implements NotationConverter {
             char character = input.charAt(i);
             if (currentCharacterIsLowerCase(character)) {
                 result.append(Character.toUpperCase(character));
-                if (currentCharacterIsNotLast(input, i) && nextCharacterIsUpperCase(input, i)) {
-                    result.append(UNDERSCORE);
-                }
+                appendUnderscoreBeforeUpperCaseCharacter(input, result, i);
             } else {
                 result.append(character);
-                if (currentCharacterIsNotLast(input, i) && nextCharacterIsUpperCase(input, i)) {
-                    result.append(UNDERSCORE);
-                }
+                appendUnderscoreBeforeUpperCaseCharacter(input, result, i);
             }
         }
         return result.toString();
+    }
+
+    private void appendUnderscoreBeforeUpperCaseCharacter(String input, StringBuilder result, int i) {
+        if (currentCharacterIsNotLast(input, i) && nextCharacterIsUpperCase(input, i)) {
+            result.append(UNDERSCORE);
+        }
     }
 
     private boolean currentCharacterIsNotLast(String input, int i) {
