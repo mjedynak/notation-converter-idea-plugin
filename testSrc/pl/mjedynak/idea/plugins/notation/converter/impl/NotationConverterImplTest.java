@@ -29,8 +29,8 @@ public class NotationConverterImplTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
-        Object[][] data = new Object[][]{{"aleFajnie", "ALE_FAJNIE"}, {"ale", "ALE"}, {"aleFajnieJest", "ALE_FAJNIE_JEST"},
-                {"ale1", "ALE1"}, {"1ale", "1ALE"}, {"ale1ble", "ALE1BLE"}, {"dlugiITrudnyString", "DLUGI_I_TRUDNY_STRING"}};
+        Object[][] data = new Object[][]{{"short", "SHORT"}, {"mediumString", "MEDIUM_STRING"}, {"veryLongString", "VERY_LONG_STRING"},
+                {"short1", "SHORT1"}, {"1short", "1SHORT"}, {"short1string", "SHORT1STRING"}, {"longABigString", "LONG_A_BIG_STRING"}};
         return Arrays.asList(data);
     }
 
