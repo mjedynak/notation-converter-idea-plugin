@@ -30,7 +30,7 @@ public class NotationConverterImplTest {
     @Parameterized.Parameters
     public static Collection<Object[]> data() {
         Object[][] data = new Object[][]{{"short", "SHORT"}, {"mediumString", "MEDIUM_STRING"}, {"veryLongString", "VERY_LONG_STRING"},
-                {"short1", "SHORT1"}, {"1short", "1SHORT"}, {"short1string", "SHORT1STRING"}, {"longABigString", "LONG_A_BIG_STRING"}};
+                {"short1", "SHORT1"}, {"1short", "1SHORT"}, {"short1string", "SHORT1STRING"}, {"longOBigString", "LONG_O_BIG_STRING"}};
         return Arrays.asList(data);
     }
 
