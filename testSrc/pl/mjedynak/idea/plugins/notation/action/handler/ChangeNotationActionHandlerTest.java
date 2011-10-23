@@ -16,12 +16,14 @@ public class ChangeNotationActionHandlerTest {
     private static final String UNDER_SCORE_TEXT = "UNDER_SCORE_TEXT";
     private static final int SELECTION_START = 0;
     private static final int SELECTION_END = 1;
+    private static final String ANY_CONVERSION_RESULT = "result";
 
     private ChangeNotationActionHandler changeNotationActionHandler;
     private NotationConverter notationConverter;
     private DataContext dataContext;
     private Editor editor;
     private SelectionModel selectionModel;
+    private Document document;
 
     @Before
     public void setUp() {
@@ -30,7 +32,7 @@ public class ChangeNotationActionHandlerTest {
         dataContext = mock(DataContext.class);
         editor = mock(Editor.class);
         selectionModel = mock(SelectionModel.class);
-        Document document = mock(Document.class);
+        document = mock(Document.class);
 
         when(editor.getSelectionModel()).thenReturn(selectionModel);
         when(editor.getDocument()).thenReturn(document);
@@ -39,27 +41,29 @@ public class ChangeNotationActionHandlerTest {
     }
 
     @Test
-    public void shouldChangeCamelCaseTextInModalWindowToUnderscore() {
+    public void shouldChangeCamelCaseTextToUnderscore() {
         // given
         when(selectionModel.getSelectedText()).thenReturn(CAMEL_CASE_TEXT);
+        when(notationConverter.convertToUnderscoreUpperCase(CAMEL_CASE_TEXT)).thenReturn(ANY_CONVERSION_RESULT);
 
         // when
         changeNotationActionHandler.executeWriteAction(editor, dataContext);
 
         // then
-        verify(notationConverter).convertToUnderscoreUpperCase(CAMEL_CASE_TEXT);
+        verify(document).replaceString(SELECTION_START, SELECTION_END, ANY_CONVERSION_RESULT);
     }
 
     @Test
-    public void shouldChangeUnderscoreTextInModalWindowToCamelCase() {
+    public void shouldChangeUnderscoreTextToCamelCase() {
         // given
         when(selectionModel.getSelectedText()).thenReturn(UNDER_SCORE_TEXT);
+        when(notationConverter.convertToCamelCase(UNDER_SCORE_TEXT)).thenReturn(ANY_CONVERSION_RESULT);
 
         // when
         changeNotationActionHandler.executeWriteAction(editor, dataContext);
 
         // then
-        verify(notationConverter).convertToCamelCase(UNDER_SCORE_TEXT);
+        verify(document).replaceString(SELECTION_START, SELECTION_END, ANY_CONVERSION_RESULT);
     }
 
 }
