@@ -6,10 +6,16 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import pl.mjedynak.idea.plugins.notation.converter.NotationConverter;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ChangeNotationActionHandlerTest {
 
     private static final String CAMEL_CASE_TEXT = "camelCaseText";
@@ -18,22 +24,17 @@ public class ChangeNotationActionHandlerTest {
     private static final int SELECTION_END = 1;
     private static final String ANY_CONVERSION_RESULT = "result";
 
+    @InjectMocks
     private ChangeNotationActionHandler changeNotationActionHandler;
-    private NotationConverter notationConverter;
-    private DataContext dataContext;
-    private Editor editor;
-    private SelectionModel selectionModel;
-    private Document document;
+
+    @Mock private NotationConverter notationConverter;
+    @Mock private DataContext dataContext;
+    @Mock private Editor editor;
+    @Mock private SelectionModel selectionModel;
+    @Mock private Document document;
 
     @Before
     public void setUp() {
-        notationConverter = mock(NotationConverter.class);
-        changeNotationActionHandler = new ChangeNotationActionHandler(notationConverter);
-        dataContext = mock(DataContext.class);
-        editor = mock(Editor.class);
-        selectionModel = mock(SelectionModel.class);
-        document = mock(Document.class);
-
         when(editor.getSelectionModel()).thenReturn(selectionModel);
         when(editor.getDocument()).thenReturn(document);
         when(selectionModel.getSelectionStart()).thenReturn(SELECTION_START);
