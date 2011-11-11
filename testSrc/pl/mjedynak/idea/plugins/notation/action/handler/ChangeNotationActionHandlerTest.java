@@ -12,8 +12,8 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import pl.mjedynak.idea.plugins.notation.converter.NotationConverter;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ChangeNotationActionHandlerTest {
@@ -27,25 +27,30 @@ public class ChangeNotationActionHandlerTest {
     @InjectMocks
     private ChangeNotationActionHandler changeNotationActionHandler;
 
-    @Mock private NotationConverter notationConverter;
-    @Mock private DataContext dataContext;
-    @Mock private Editor editor;
-    @Mock private SelectionModel selectionModel;
-    @Mock private Document document;
+    @Mock
+    private NotationConverter notationConverter;
+    @Mock
+    private DataContext dataContext;
+    @Mock
+    private Editor editor;
+    @Mock
+    private SelectionModel selectionModel;
+    @Mock
+    private Document document;
 
     @Before
     public void setUp() {
-        when(editor.getSelectionModel()).thenReturn(selectionModel);
-        when(editor.getDocument()).thenReturn(document);
-        when(selectionModel.getSelectionStart()).thenReturn(SELECTION_START);
-        when(selectionModel.getSelectionEnd()).thenReturn(SELECTION_END);
+        given(editor.getSelectionModel()).willReturn(selectionModel);
+        given(editor.getDocument()).willReturn(document);
+        given(selectionModel.getSelectionStart()).willReturn(SELECTION_START);
+        given(selectionModel.getSelectionEnd()).willReturn(SELECTION_END);
     }
 
     @Test
     public void shouldChangeCamelCaseTextToUnderscore() {
         // given
-        when(selectionModel.getSelectedText()).thenReturn(CAMEL_CASE_TEXT);
-        when(notationConverter.convertToUnderscoreUpperCase(CAMEL_CASE_TEXT)).thenReturn(ANY_CONVERSION_RESULT);
+        given(selectionModel.getSelectedText()).willReturn(CAMEL_CASE_TEXT);
+        given(notationConverter.convertToUnderscoreUpperCase(CAMEL_CASE_TEXT)).willReturn(ANY_CONVERSION_RESULT);
 
         // when
         changeNotationActionHandler.executeWriteAction(editor, dataContext);
@@ -57,8 +62,8 @@ public class ChangeNotationActionHandlerTest {
     @Test
     public void shouldChangeUnderscoreTextToCamelCase() {
         // given
-        when(selectionModel.getSelectedText()).thenReturn(UNDER_SCORE_TEXT);
-        when(notationConverter.convertToCamelCase(UNDER_SCORE_TEXT)).thenReturn(ANY_CONVERSION_RESULT);
+        given(selectionModel.getSelectedText()).willReturn(UNDER_SCORE_TEXT);
+        given(notationConverter.convertToCamelCase(UNDER_SCORE_TEXT)).willReturn(ANY_CONVERSION_RESULT);
 
         // when
         changeNotationActionHandler.executeWriteAction(editor, dataContext);
