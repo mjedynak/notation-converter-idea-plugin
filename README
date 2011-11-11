@@ -1,3 +1,7 @@
 Plugin for IntelliJ IDEA that adds ability to convert the selected name between camel case (used in field's names) and uppercase underscore (used in constant's names).
 Works similar to 'Toggle case' action.
-Created under IntelliJ IDEA 10.5.2
+Requires gradle and IntelliJ IDEA for building.
+Build instructions:
+- edit build.gradle and change values of 'ideaInstallationPath' and 'ideaJdk' to be in sync with your environment
+- invoke 'gradle build' from command line to build
+- invoke 'gradle idea' from command line to generate IDEA specific files - provides possibility to be opened as IDEA project.
